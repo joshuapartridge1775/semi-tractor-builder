@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.game-container {
+  @apply w-full h-screen bg-gradient-to-br from-industrial-900 to-industrial-800;
+}
+
+.panel {
+  @apply bg-industrial-800 border border-industrial-700 rounded-lg shadow-lg;
+}
+
+.button-primary {
+  @apply px-4 py-2 bg-production-weld hover:bg-orange-600 text-white rounded font-semibold transition-colors;
+}
+
+.button-secondary {
+  @apply px-4 py-2 bg-industrial-700 hover:bg-industrial-600 text-white rounded font-semibold transition-colors;
+}
+
+.stat-card {
+  @apply p-4 bg-industrial-700 rounded-lg border border-industrial-600;
+}
+
+.progress-bar {
+  @apply h-2 bg-industrial-600 rounded-full overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full transition-all duration-300;
+}
