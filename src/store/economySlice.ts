@@ -1,17 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+export interface SellTractorPayload {
+  salePrice: number
+  costBasis: number
+}
+
 interface EconomyState {
-  capital: number // Starting: $100,000
+  capital: number
   totalRevenue: number
   totalExpenses: number
+  totalCostsRecovered: number
+  totalProfit: number
   tractorsSold: number
-  marketDemand: number // 0-100 (affects selling prices)
+  marketDemand: number
 }
 
 const initialState: EconomyState = {
   capital: 100000,
   totalRevenue: 0,
   totalExpenses: 0,
+  totalCostsRecovered: 0,
+  totalProfit: 0,
   tractorsSold: 0,
   marketDemand: 50,
 }
@@ -30,9 +39,14 @@ const economySlice = createSlice({
       state.totalExpenses += action.payload
     },
 
-    sellTractor: (state, action: PayloadAction<number>) => {
-      state.capital += action.payload
-      state.totalRevenue += action.payload
+    sellTractor: (state, action: PayloadAction<SellTractorPayload>) => {
+      const { salePrice, costBasis } = action.payload
+      const profit = salePrice - costBasis
+
+      state.capital += salePrice
+      state.totalRevenue += salePrice
+      state.totalCostsRecovered += costBasis
+      state.totalProfit += profit
       state.tractorsSold += 1
     },
 
